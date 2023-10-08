@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Saper</title>
+    <link
+      rel="stylesheet"
+      href="/style.css"
+    />
+  </head>
+  <body>
+    <form id="settings">
+      <label for="width">Szerokość: </label>
+      <input
+        id="width"
+        type="number"
+        min="1"
+        value="10"
+      />
+      <label for="height">Wysokość: </label>
+      <input
+        id="height"
+        type="number"
+        min="1"
+        value="10"
+      />
+      <label for="mines">Miny: </label>
+      <input
+        id="mines"
+        type="number"
+        min="1"
+        value="10"
+      />
+      <button type="submit">Zastosuj</button>
+    </form>
+    <div id="app"></div>
+    <script
+      type="module"
+      src="/main.js"
+    ></script>
+  </body>
+</html>
