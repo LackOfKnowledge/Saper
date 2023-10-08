@@ -4,7 +4,7 @@ export class Cell {
     this.y = y;
     this.mine = mine;
     this.revealed = false;
-    this.count = 0; // Dodano liczbę sąsiadujących min
+    this.count = 0;
     this.element = this.createElement();
   }
 
@@ -22,7 +22,7 @@ export class Cell {
       } else {
         this.element.classList.add("safe");
         if (this.count > 0) {
-          this.element.textContent = this.count.toString(); // Dodano wyświetlanie liczby sąsiadujących min
+          this.element.textContent = this.count.toString();
         }
       }
     }
@@ -36,15 +36,13 @@ export class Cell {
     } else {
       this.element.classList.add("safe");
       if (this.count > 0) {
-        this.element.textContent = this.count.toString(); // Dodano wyświetlanie liczby sąsiadujących min
+        this.element.textContent = this.count.toString();
       }
     }
   }
 
   update() {
-    // Usuń wszystkie istniejące klasy
     this.element.className = "";
-    // Dodaj aktualne klasy komórki
-    this.element.classList.add(...this.render().classList);
+    this.render();
   }
 }

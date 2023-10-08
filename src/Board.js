@@ -8,14 +8,12 @@ export class Board {
     this.cells = [];
     this.gameOver = false;
 
-    // Inicjalizacja komórek
     for (let y = 0; y < height; y++) {
       for (let x = 0; x < width; x++) {
         this.cells.push(new Cell(x, y));
       }
     }
 
-    // Umieszczanie losowo min na planszy
     for (let i = 0; i < mines; i++) {
       let cell = null;
       do {
@@ -24,7 +22,6 @@ export class Board {
       cell.mine = true;
     }
 
-    // Obliczanie sąsiadujących min dla każdej komórki
     this.cells.forEach((cell) => {
       if (!cell.mine) {
         const neighbors = this.getNeighbors(cell.x, cell.y);
@@ -55,12 +52,11 @@ export class Board {
       const cellElement = cell.render();
       container.appendChild(cellElement);
 
-      // Obsługa zdarzeń kliknięcia
       cellElement.addEventListener("click", () => {
         if (!this.gameOver) {
           this.reveal(cell.x, cell.y);
-          cellElement.className = ""; // Usuń wszystkie istniejące klasy
-          cellElement.classList.add(...cell.render().classList); // Dodaj aktualne klasy komórki
+          cellElement.className = "";
+          cellElement.classList.add(...cell.render().classList);
         }
       });
     });
@@ -74,17 +70,20 @@ export class Board {
       if (cell.mine) {
         this.gameOver = true;
         alert("Game Over");
-        // Odkryj całą planszę
         this.cells.forEach((cell) => {
           cell.reveal();
-          cell.update(); // Aktualizuj element DOM komórki
+          cell.update();
         });
       } else if (cell.count === 0) {
-        // Odkryj wszystkie sąsiednie komórki bez min
         const neighbors = this.getNeighbors(x, y);
+        cell.reveal();
+        cell.update();
         neighbors
           .filter((neighbor) => !neighbor.mine)
           .forEach((neighbor) => this.reveal(neighbor.x, neighbor.y));
+      } else {
+        cell.reveal();
+        cell.update();
       }
     }
   }

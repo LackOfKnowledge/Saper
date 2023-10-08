@@ -121,10 +121,10 @@ button:focus-visible {
   font-size: 50%;
 }
 
-.cell.revealed.mine {
+.revealed.mine {
   background-color: red;
 }
 
-.cell.revealed.safe {
+.revealed.safe {
   background-color: green;
 }
